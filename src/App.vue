@@ -1,8 +1,6 @@
 <script setup>
-import ComponentButton from './components/ComponentButton.vue'
 import ComponentCard from './components/ComponentCard.vue'
 import ComponentFooter from './components/ComponentFooter.vue'
-import ComponentForm from './components/ComponentForm.vue'
 </script>
 <template>
   <head>
@@ -10,10 +8,7 @@ import ComponentForm from './components/ComponentForm.vue'
   </head>
   <body>
     <main>
-      <ComponentCard>
-        <ComponentForm />
-        <ComponentButton />
-      </ComponentCard>
+      <ComponentCard />
     </main>
   </body>
   <ComponentFooter />
@@ -26,7 +21,7 @@ import ComponentForm from './components/ComponentForm.vue'
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: 0;
+  box-sizing: border-box;
 }
 :root {
   --purple: hsl(259, 100%, 65%);
