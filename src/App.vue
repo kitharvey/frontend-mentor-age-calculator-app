@@ -1,16 +1,22 @@
 <script setup>
-import FooterComponent from './components/FooterComponent.vue'
+import ComponentButton from './components/ComponentButton.vue'
+import ComponentCard from './components/ComponentCard.vue'
+import ComponentFooter from './components/ComponentFooter.vue'
+import ComponentForm from './components/ComponentForm.vue'
 </script>
 <template>
   <head>
     <title>Frontend Mentor | Age calculator app</title>
   </head>
   <body>
-    Day DD Month MM Year YYYY -- years -- months -- days
-
-    <main></main>
+    <main>
+      <ComponentCard>
+        <ComponentForm />
+        <ComponentButton />
+      </ComponentCard>
+    </main>
   </body>
-  <FooterComponent />
+  <ComponentFooter />
 </template>
 
 <style>
@@ -33,8 +39,11 @@ import FooterComponent from './components/FooterComponent.vue'
 }
 body {
   font-family: 'Poppins', sans-serif;
+  background-color: var(--light-grey);
   min-height: 100vh;
   width: 100%;
-  background-color: var(--light-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
