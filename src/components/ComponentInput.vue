@@ -17,14 +17,6 @@ export default {
       type: String,
       required: true
     },
-    propMin: {
-      type: String,
-      required: true
-    },
-    propMax: {
-      type: String,
-      required: true
-    },
     propError: {
       type: String
     }
@@ -42,7 +34,7 @@ export default {
 }
 </script>
 <template>
-  <label :for="propName">
+  <label :for="propName" :class="{ error: propError }">
     <span>{{ propTitle }}</span>
     <input
       v-model="inputValue"
@@ -51,11 +43,29 @@ export default {
       :name="propName"
       :placeholder="propPlaceholder"
       :pattern="propPattern"
-      :min="propMin"
-      :max="propMax"
       type="number"
-      required
     />
     <span v-if="propError">{{ propError }}</span>
   </label>
 </template>
+
+<style scoped>
+label {
+  display: flex;
+  flex-direction: column;
+}
+label.error input {
+  border: 1px solid var(--light-red);
+}
+label.error span {
+  color: var(--light-red);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  appearance: textfield;
+}
+</style>

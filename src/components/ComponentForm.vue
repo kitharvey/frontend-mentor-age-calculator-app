@@ -5,15 +5,7 @@ export default {
   props: {
     errorYear: String,
     errorMonth: String,
-    errorDay: String,
-    maxDay: {
-      type: String,
-      required: true
-    },
-    maxYear: {
-      type: String,
-      required: true
-    }
+    errorDay: String
   },
   data() {
     return {
@@ -25,8 +17,8 @@ export default {
     }
   },
   methods: {
-    handleSubmit() {
-      this.$emit('submit', this.birthDate)
+    submitFormHandler() {
+      this.$emit('submit-form-handler', this.birthDate)
     },
     handleInputChange(value) {
       this.birthDate[`${value.propName}`] = value.inputValue
@@ -36,15 +28,13 @@ export default {
 }
 </script>
 <template>
-  <form @submit.prevent="handleSubmit" id="age">
+  <form @submit.prevent="submitFormHandler" id="age">
     <fieldset>
       <ComponentInput
         prop-title="Day"
         prop-name="day"
         prop-placeholder="DD"
         prop-pattern="\d{1,2}"
-        prop-min="1"
-        :prop-max="maxDay"
         :prop-error="errorDay"
         @input-change="handleInputChange"
       />
@@ -53,8 +43,6 @@ export default {
         prop-name="month"
         prop-placeholder="MM"
         prop-pattern="\d{1,2}"
-        prop-min="1"
-        prop-max="12"
         :prop-error="errorMonth"
         @input-change="handleInputChange"
       />
@@ -63,8 +51,6 @@ export default {
         prop-name="year"
         prop-placeholder="YYYY"
         prop-pattern="\d{4,4}"
-        prop-min="1900"
-        :prop-max="maxYear"
         :prop-error="errorYear"
         @input-change="handleInputChange"
       />
@@ -75,5 +61,6 @@ export default {
 <style scoped>
 fieldset {
   border: none;
+  display: flex;
 }
 </style>

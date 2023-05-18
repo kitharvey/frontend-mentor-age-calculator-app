@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getAge, isDayValid, isMonthValid, isValidYear, getMaxValues } from '../helpers'
+import { getAge, isYearValid, isMonthValid, isDayValid } from '../helpers'
 import ComponentAge from './ComponentAge.vue'
 import ComponentButton from './ComponentButton.vue'
 import ComponentForm from './ComponentForm.vue'
@@ -12,19 +12,20 @@ export default {
         months: 0,
         days: 0
       },
-      error: {
-        year: '',
-        month: '',
-        day: ''
-      },
-      maxValues: getMaxValues()
+      errorYear: '',
+      errorMonth: '',
+      errorDay: ''
     }
   },
   methods: {
     handleSubmit(value) {
       const { year, month, day } = value
-      if (isValidYear(year) && isMonthValid(month) && isDayValid(year, month, day)) {
-        this.age = getAge(year, month, day)
+      this.errorYear = isYearValid(year)
+      this.errorMonth = isMonthValid(year, month)
+      this.errorDay = isDayValid(year, month, day)
+      if (!this.errorYear && !this.errorMonth && !this.errorDay) {
+        const birthDate = new Date(year, month - 1, day)
+        this.age = getAge(birthDate)
       }
     }
   },
@@ -34,12 +35,10 @@ export default {
 <template>
   <div class="card">
     <ComponentForm
-      @submit="handleSubmit"
-      :error-day="error.day"
-      :error-month="error.month"
-      :error-year="error.year"
-      :max-year="maxValues.maxYear.toString()"
-      :max-day="maxValues.maxDay.toString()"
+      @submit-form-handler="handleSubmit"
+      :error-year="errorYear"
+      :error-month="errorMonth"
+      :error-day="errorDay"
     />
     <ComponentButton />
     <ComponentAge :years="age.years" :months="age.months" :days="age.days" />
