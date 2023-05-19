@@ -1,7 +1,6 @@
 <script lang="ts">
 import { getAge, isYearValid, isMonthValid, isDayValid } from '../helpers'
 import ComponentAge from './ComponentAge.vue'
-import ComponentButton from './ComponentButton.vue'
 import ComponentForm from './ComponentForm.vue'
 
 export default {
@@ -26,10 +25,16 @@ export default {
       if (!this.errorYear && !this.errorMonth && !this.errorDay) {
         const birthDate = new Date(year, month - 1, day)
         this.age = getAge(birthDate)
+      } else {
+        this.age = {
+          years: 0,
+          months: 0,
+          days: 0
+        }
       }
     }
   },
-  components: { ComponentForm, ComponentButton, ComponentAge }
+  components: { ComponentForm, ComponentAge }
 }
 </script>
 <template>
@@ -40,7 +45,6 @@ export default {
       :error-month="errorMonth"
       :error-day="errorDay"
     />
-    <ComponentButton />
     <ComponentAge :years="age.years" :months="age.months" :days="age.days" />
   </div>
 </template>
@@ -48,9 +52,20 @@ export default {
 <style scoped>
 .card {
   background-color: var(--white);
-  height: 45em;
   width: 55em;
   border-radius: 2em 2em 15em 2em;
   padding: 5em;
+}
+
+@media only screen and (max-width: 900px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .card {
+    padding: 3em;
+  }
 }
 </style>

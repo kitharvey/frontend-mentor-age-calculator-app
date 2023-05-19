@@ -19,5 +19,24 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(50%) translateX(0%);
+}
+button:hover {
+  background: var(--off-black);
+}
+
+@media only screen and (max-width: 700px) {
+  button {
+    right: 50%;
+    transform: translateY(50%) translateX(50%);
+    width: 5em;
+    height: 5em;
+  }
+  svg {
+    transform: scale(0.8);
+  }
 }
 </style>

@@ -35,7 +35,7 @@ export default {
 </script>
 <template>
   <label :for="propName" :class="{ error: propError }">
-    <span>{{ propTitle }}</span>
+    <span class="title">{{ propTitle }}</span>
     <input
       v-model="inputValue"
       @input="handleInput"
@@ -45,7 +45,7 @@ export default {
       :pattern="propPattern"
       type="number"
     />
-    <span v-if="propError">{{ propError }}</span>
+    <span class="error-message">{{ propError ? propError : 'error message' }}</span>
   </label>
 </template>
 
@@ -60,6 +60,22 @@ label.error input {
 label.error span {
   color: var(--light-red);
 }
+span.title {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--smokey-grey);
+  margin-bottom: 0.25em;
+  font-size: 1.2em;
+}
+span.error-message {
+  visibility: hidden;
+  font-style: italic;
+  font-size: 0.8em;
+}
+label.error span.error-message {
+  visibility: visible;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -67,5 +83,33 @@ input::-webkit-inner-spin-button {
 }
 input[type='number'] {
   appearance: textfield;
+}
+input {
+  border: 1px solid var(--light-grey);
+  outline: none;
+  border-radius: 0.5em;
+  padding: 0.5em 0.75em;
+  font-size: 2em;
+  font-weight: 800;
+  font-family: inherit;
+}
+input:hover,
+input:active,
+input:focus,
+input:focus-within,
+input:focus-visible {
+  border-color: var(--purple);
+}
+
+@media only screen and (max-width: 700px) {
+  span.title {
+    font-size: 1em;
+  }
+  span.error-message {
+    font-size: 0.75em;
+  }
+  input {
+    font-size: 1.25em;
+  }
 }
 </style>

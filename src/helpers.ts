@@ -23,11 +23,11 @@ const isDayValid = (year, month, day) => {
   let thisDay = date.getDate()
   const maxDay = getMaxDayinMonth(year, month)
   if (!day) {
-    return 'This field is required'
+    return 'This is empty'
   } else if (day < 1 || day > maxDay) {
-    return 'Invalid Day'
+    return "Day don't exist"
   } else if (thisYear === year && month === thisMonth && day >= thisDay) {
-    return 'Must be in the past'
+    return 'Not born yet'
   } else return ''
 }
 const isMonthValid = (year, month) => {
@@ -35,22 +35,22 @@ const isMonthValid = (year, month) => {
   let thisMonth = date.getMonth() + 1
   let thisYear = date.getFullYear()
   if (!month) {
-    return 'This field is required'
-  } else if (month > thisMonth && thisYear === year) {
-    return 'Must be in the past'
+    return 'This is empty'
   } else if (month < 1 || month > 12) {
-    return 'Invalid Month'
+    return "Month don't exist"
+  } else if (month > thisMonth && thisYear === year) {
+    return 'Not born yet'
   } else return ''
 }
 const isYearValid = (year) => {
   const d = new Date()
   let thisYear = d.getFullYear()
   if (!year) {
-    return 'This field is required'
+    return 'This is empty'
   } else if (year < 1900) {
-    return 'Must be earlier than 1900'
+    return 'Older than 1900s'
   } else if (year > thisYear) {
-    return 'Must be in the past'
+    return 'Not born yet'
   } else return ''
 }
 export { getAge, isYearValid, isMonthValid, isDayValid }

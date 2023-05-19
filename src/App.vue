@@ -6,11 +6,9 @@ import ComponentFooter from './components/ComponentFooter.vue'
   <head>
     <title>Frontend Mentor | Age calculator app</title>
   </head>
-  <body>
-    <main>
-      <ComponentCard />
-    </main>
-  </body>
+  <main>
+    <ComponentCard />
+  </main>
   <ComponentFooter />
 </template>
 
@@ -35,10 +33,17 @@ import ComponentFooter from './components/ComponentFooter.vue'
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--light-grey);
+}
+main {
   min-height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media only screen and (max-width: 900px) {
+  body {
+    padding: 0 1em;
+  }
 }
 </style>
