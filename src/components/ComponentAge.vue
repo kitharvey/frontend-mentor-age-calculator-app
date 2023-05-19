@@ -32,6 +32,7 @@ div {
 p {
   font-size: 5em;
   font-weight: 800;
+  font-style: italic;
 }
 span {
   color: var(--purple);
