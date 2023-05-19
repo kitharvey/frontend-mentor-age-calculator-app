@@ -1,23 +1,26 @@
 <script lang="ts">
+import ComponentCount from './ComponentCount.vue'
+
 export default {
   props: {
     years: Number,
     months: Number,
     days: Number
-  }
+  },
+  components: { ComponentCount }
 }
 </script>
 
 <template>
   <div>
     <p>
-      <span>{{ years ? years : '--' }}</span> years
+      <span><ComponentCount :number="years" /></span> years
     </p>
     <p>
-      <span>{{ months ? months : '--' }}</span> months
+      <span><ComponentCount :number="months" /></span> months
     </p>
     <p>
-      <span>{{ days ? days : '--' }}</span> days
+      <span><ComponentCount :number="days" /></span> days
     </p>
   </div>
 </template>
